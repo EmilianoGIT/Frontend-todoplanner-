@@ -1,6 +1,6 @@
 # Backend-todoplanner
 Frontend module of a todo planner site made using **Angular** for learning purposes.  
-[Here](https://github.com/EmilianoGIT/Backend-todoplanner-) you can find its relative backend made in **Spring Boot**.  
+[Here](https://github.com/EmilianoGIT/Backend-todoplanner) you can find its relative backend made in **Spring Boot**.  
 To run the application run `ng serve` or `ng serve --host 0.0.0.0` to make the Angular application reacheable to all the hosts from the same network.
 
 ## Bootstrap
