@@ -1,0 +1,36 @@
+
+<form  class="form-signin" #userForm="ngForm" (ngSubmit)="userForm.form.valid && onSubmit(userForm)">
+  <h1 class="h3 mb-3 font-weight-normal text-center">Please sign up</h1>
+
+  <div class="alert alert-warning" *ngIf='invalidSignUp'>{{errorMessage}}</div>
+  <div class="form-group">
+    <input type="text" name="username" class="form-control" [(ngModel)]="username" #name="ngModel" placeholder="Username" 
+    [ngClass]="{ 'is-invalid': userForm.submitted && name.invalid}"required>
+    <div class="invalid-feedback" *ngIf="userForm.submitted && name.invalid">
+      <p *ngIf="name.errors.required">Username is required</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" [(ngModel)]="password" #passwor="ngModel" placeholder="Password" required
+    [ngClass]="{ 'is-invalid': userForm.submitted && passwor.invalid}" minlength="8">
+    <div *ngIf="userForm.submitted && passwor.invalid" class="invalid-feedback">
+      <div *ngIf="passwor.errors.required">Password is required</div>
+      <div *ngIf="passwor.errors.minlength">Password should be at least 8 characters long</div>
+    </div>
+  
+  </div>
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="confirmPassword" #confirmPasswor="ngModel" placeholder="Confirm Password" required
+    [ngClass]="{ 'is-invalid': userForm.submitted && confirmPasswor.value != passwor.value && confirmPasswor.invalid}" minlength="8">
+    <div *ngIf="userForm.submitted &&  confirmPasswor.value != passwor.value" class="invalid-feedback">
+      <div *ngIf="confirmPasswor.value != passwor.value">Passwords must be the same</div>
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-danger btn-block">Register</button>
+  </div>
+</form>
