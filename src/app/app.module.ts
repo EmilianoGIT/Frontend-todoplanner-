@@ -16,6 +16,8 @@ import { TodoComponent } from './todo/todo.component';
 import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter-basic-auth.service';
 import { RegisterComponent } from './register/register.component';
 
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RecaptchaModule,  //this is the recaptcha main module
+    //RecaptchaFormsModule //this is the module for form incase form validation
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : HttpIntercepterBasicAuthService, multi : true}

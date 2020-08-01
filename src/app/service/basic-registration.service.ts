@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {map} from 'rxjs/operators';
 import { API_URL } from '../app.constants';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,16 @@ export class BasicRegistrationService {
 
 
 
-  executeRegistrationService(username, password) {
+  executeRegistrationService(username, password, recaptchaResponse) {
 
+
+
+    let httpHeaders = new HttpHeaders({
+      'Recaptcha-Response' : recaptchaResponse
+         });    
+         let options = {
+      headers: httpHeaders
+         }; 
 
 
     /*
@@ -22,8 +30,10 @@ export class BasicRegistrationService {
     */
     return this.http.post<any>(`${API_URL}/register`, {
       username,
-      password
-    }).pipe(
+      password,
+    },
+    options
+    ).pipe(
       map(
         data => {          
           return data;

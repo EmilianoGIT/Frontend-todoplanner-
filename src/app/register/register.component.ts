@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BasicRegistrationService } from '../service/basic-registration.service';
 import { Router } from '@angular/router';
+import { RECAPTCHA_SITE_KEY } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
 
@@ -14,6 +15,9 @@ export class RegisterComponent implements OnInit {
   confirmPassword = ''
   errorMessage = 'Invalid Inputs'
   invalidSignUp = false
+
+  siteKey = RECAPTCHA_SITE_KEY;
+  cResp = '';
 
   constructor(private router : Router, private basicRegistrationService : BasicRegistrationService) { }
 
@@ -27,7 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   handleRegistration() {
-    this.basicRegistrationService.executeRegistrationService(this.username, this.password)
+    this.basicRegistrationService.executeRegistrationService(this.username, this.password, this.cResp)
     .subscribe(
       data => {      
         //this.router.navigate(['login', this.username])
@@ -42,6 +46,10 @@ export class RegisterComponent implements OnInit {
     )
     }
 
+    public resolved(captchaResponse: string) {
+      console.log(`Resolved captcha with response: ${captchaResponse}`);
+      this.cResp = captchaResponse;
+    }
 }
 
 
