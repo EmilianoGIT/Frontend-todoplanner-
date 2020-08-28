@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { API_URL } from '../app.constants';
+import { CookieService } from 'ngx-cookie-service';  
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
@@ -11,7 +12,7 @@ export const AUTHENTICATED_USER = 'authenticatedUser';
 })
 export class BasicAuthenticationService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService: CookieService) { }
 
   executeJWTAuthenticationService(username, password) {
 
@@ -27,8 +28,9 @@ export class BasicAuthenticationService {
     }).pipe(
       map(
         data => {
-          sessionStorage.setItem(AUTHENTICATED_USER, username);
-          sessionStorage.setItem(TOKEN, `Bearer ${data.token}`);          
+          this.cookieService.set(AUTHENTICATED_USER, username);
+          this.cookieService.set(TOKEN, 'Bearer ' + data.token);
+                  
           return data;
         }
       )
@@ -36,22 +38,22 @@ export class BasicAuthenticationService {
   }
 
   getAuthenticatedUser() {
-    return sessionStorage.getItem(AUTHENTICATED_USER);
+    return this.cookieService.get(AUTHENTICATED_USER);
   }
 
   getAuthenticatedToken() {
     if(this.getAuthenticatedUser())
-    return sessionStorage.getItem(TOKEN);
+    return this.cookieService.get(TOKEN);
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(AUTHENTICATED_USER);
-    return !(user === null)
+    let cookieExists = this.cookieService.check(AUTHENTICATED_USER);
+    return cookieExists;
   }
 
   logout() {
-    sessionStorage.removeItem(AUTHENTICATED_USER);
-    sessionStorage.removeItem(TOKEN);
+    this.cookieService.delete(AUTHENTICATED_USER);
+    this.cookieService.delete(TOKEN);
   }
 }
 
