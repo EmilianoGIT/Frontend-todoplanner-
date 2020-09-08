@@ -1,3 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
 /*@import url(https://unpkg.com/bootstrap@4.3.1/dist/css/bootstrap.min.css);*/
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .wrapper img {
+    width: 100%;
+    height: auto;
+  }
+
+
+  
+  .wrapper .btn-right1 {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+      transform: translate(-100%, -100%);
+      -ms-transform: translate(-100%, -100%);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .wrapper .btn-right2 {
+    position: absolute;
+    top: 100%;
+    left: 75%;
+      transform: translate(-100%, -100%);
+      -ms-transform: translate(-100%, -100%);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+
+  /* Style buttons */
+  .icon-button {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 4px 5px;
+    font-size: 16px; /* Set a font size */
+    border-radius: 5px;
+    cursor: pointer; /* Mouse pointer on hover */
+  }
+  
+  /* Darker background on mouse-over */
+  .icon-button:hover {
+    background-color: RoyalBlue;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

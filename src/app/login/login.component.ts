@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   errorMessage = ''
   invalidLogin = false
 
-  constructor(private router : Router, 
+  constructor(private router : Router,
     private basicAuthenticationService : BasicAuthenticationService) { }
 
   ngOnInit(): void {
@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit(form) {
-    console.log(form.value)
     this.handleJTWAuthLogin();
   }
 
@@ -33,11 +32,11 @@ export class LoginComponent implements OnInit {
     .subscribe(
       data => {
         this.router.navigate(['welcome', this.username])
-        this.invalidLogin = false   
+        this.invalidLogin = false
       },
       error => {
         this.errorMessage = error.error.message;
-        this.invalidLogin = true        
+        this.invalidLogin = true
       }
 
     )

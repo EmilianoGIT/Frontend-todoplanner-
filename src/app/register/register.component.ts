@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   password = ''
   confirmPassword = ''
   errorMessage = 'Invalid Inputs'
+  validationError = ''
   invalidSignUp = false
 
   siteKey = RECAPTCHA_SITE_KEY;
@@ -26,21 +27,33 @@ export class RegisterComponent implements OnInit {
 
 
   onSubmit(form) {
-    console.log(form.value)
     this.handleRegistration();
+  }
+
+  passwordAreTheSame(){
+    console.log(this.confirmPassword)
+    if(this.password == this.confirmPassword){
+      this.validationError = ''
+      return true
+    }
+      else{
+        this.validationError = 'Please, enter the same passwords.'
+        return false
+      }
+
+
   }
 
   handleRegistration() {
     this.basicRegistrationService.executeRegistrationService(this.username, this.password, this.cResp)
     .subscribe(
-      data => {      
-        //this.router.navigate(['login', this.username])
+      data => {
         this.router.navigate(['login'])
-        this.invalidSignUp = false   
+        this.invalidSignUp = false
       },
       error => {
         this.errorMessage = error.error.message;
-        this.invalidSignUp = true        
+        this.invalidSignUp = true
       }
 
     )

@@ -1,0 +1,130 @@
+<div class="col">
+  <div class="row">
+    <div class="col mb-3">
+      <div class="card">
+        <!--Start tab-->
+        <div class="card-body">
+          <div class="e-profile">
+            <div class="row">
+              <div class="col-12 col-sm-auto mb-3">
+                <div class="mx-auto" style="width: 140px">
+                  <div class="d-flex justify-content-center align-items-center rounded"
+                    style="height: 140px; background-color: rgb(233, 236, 239)">
+                    <div *ngIf="!profile.picture" class="wrapper">
+                      <img style="width: 140px; height: 140px" src="assets/images/default-user-image.png" />
+                      <label class="btn-right1 icon-button">
+                        <i class="fa fa-folder"></i>
+                        <input type="file" accept="image/*" (change)="onFileChanged($event)" class="d-none" />
+                      </label>
+                    </div>
+
+                    <div *ngIf="profile.picture" class="wrapper">
+                      <img style="width: 140px; height: 140px" [src]="profile.picture" />
+                      <label class="btn-right1 icon-button">
+                        <i class="fa fa-folder"></i>
+                        <input type="file" accept="image/*" (change)="onFileChanged($event)" class="d-none" />
+                      </label>
+
+                      <label class="btn-right2 icon-button">
+                        <i class="fa fa-trash"></i>
+                        <input type="button" (click)="deleteImage()" value="upload" class="d-none" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                <div class="text-center text-sm-left mb-2 mb-sm-0">
+                  <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                    {{ profile.firstname }} {{ profile.lastname }}
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            <!-- Start form -->
+            <form (ngSubmit)="saveProfile()" #profileForm="ngForm">
+              <div class="row">
+                <div class="col">
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Firstname</label>
+                        <input class="form-control" type="text" name="firsname" placeholder="" value=""
+                          #firsname="ngModel" [(ngModel)]="profile.firstname" />
+                      </div>
+                    </div>
+
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Lastname</label>
+                        <input class="form-control" type="text" name="lastname" placeholder="" value=""
+                          #lastname="ngModel" [(ngModel)]="profile.lastname" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" type="text" readonly name="username" placeholder=""
+                          value="{{ profile?.user?.username }}" />
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" type="text" readonly placeholder="user@example.com"
+                          value="{{ profile?.user?.email }}" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col mb-3">
+                      <div class="form-group">
+                        <label>About</label>
+                        <textarea class="form-control" rows="5" name="bio" placeholder="My Bio" #bio="ngModel"
+                          [(ngModel)]="profile.bio"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--
+                                    <div class="row">
+                                      <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                                        </div>
+                                    </div>
+                                  -->
+
+              <div class="row">
+                <div class="col"></div>
+                <div class="alert alert-success" *ngIf="message">
+                  {{ message }}
+                </div>
+
+                <div class="col">
+                  <div class="col d-flex justify-content-end">
+                    <button class="btn btn-primary" type="submit">
+                      Save Changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- End form -->
+            </form>
+          </div>
+
+          <!--End tab-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

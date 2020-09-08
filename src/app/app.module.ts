@@ -17,6 +17,11 @@ import { HttpIntercepterBasicAuthService } from './service/http/http-intercepter
 import { RegisterComponent } from './register/register.component';
 
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+import { ProfileComponent } from './profile/profile.component';
+import { AccountMenuComponent } from './account-menu/account-menu.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -29,15 +34,20 @@ import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
     FooterComponent,
     LogoutComponent,
     TodoComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent,
+    AccountMenuComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RecaptchaModule,  //this is the recaptcha main module
+    RecaptchaModule,
+    BrowserAnimationsModule,  //this is the recaptcha main module
     //RecaptchaFormsModule //this is the module for form incase form validation
+    MatTabsModule
   ],
   providers: [
     {provide : HTTP_INTERCEPTORS, useClass : HttpIntercepterBasicAuthService, multi : true}

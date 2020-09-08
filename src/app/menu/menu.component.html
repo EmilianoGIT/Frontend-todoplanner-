@@ -10,6 +10,7 @@
         <ul class="navbar-nav navbar-collapse justify-content-end">
             <li><a class="btn btn-outline-primary ml-1 mr-1" *ngIf="!basicAuthenticationService.isUserLoggedIn()" routerLink="/login">LogIn</a></li>
             <li><a class="btn btn-outline-secondary ml-1 mr-1"*ngIf="!basicAuthenticationService.isUserLoggedIn()" routerLink="/register">SignUp</a></li>
+            <li><a class="btn btn-outline-info ml-1 mr-1"*ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/account">Account</a></li>
             <li><a class="btn btn-outline-warning ml-1 mr-1" *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/logout">LogOut</a></li>
         </ul>
     </nav>

@@ -1,0 +1,8 @@
+<mat-tab-group (selectedTabChange)="onTabChanged($event)">
+  <mat-tab routerLink="/profile" label="Profile">
+    <app-profile></app-profile>
+  </mat-tab>
+  <mat-tab label="Change Password">
+    <app-change-password></app-change-password>
+  </mat-tab>
+</mat-tab-group>
